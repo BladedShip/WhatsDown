@@ -5,8 +5,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import ChatScreen from '../screens/ChatScreen';
-import Chats from '../screens/Chats';
 import MainTabNavigator from './MainTabNavigator';
+import Contacts from '../screens/Contacts';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +26,10 @@ const Navigator = () => {
                 <Stack.Screen
                     name="ChatScreen"
                     component={ChatScreen}
+                />
+                <Stack.Screen
+                    name="Contacts"
+                    component = {Contacts}
                 />
             </Stack.Navigator>
         </NavigationContainer>

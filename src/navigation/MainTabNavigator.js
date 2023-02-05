@@ -67,7 +67,7 @@ const MainTabNavigator = () => {
             <Tab.Screen
                 name="Chats"
                 component={Chats}
-                options={{
+                options={({navigation}) => ({
                     tabBarIcon: ({ color, size }) => {
                         return (
                             <Ionicons
@@ -84,10 +84,11 @@ const MainTabNavigator = () => {
                                 size={18}
                                 color={"royalblue"}
                                 style={{ marginRight: 15 }}
+                                onPress={() => navigation.navigate("Contacts")}
                             />
                         )
                     }
-                }}
+                })}
             />
             <Tab.Screen
                 name="Settings"
