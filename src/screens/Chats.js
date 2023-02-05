@@ -7,9 +7,10 @@ import { FlashList } from "@shopify/flash-list";
 
 const Chats = () => {
     return (
-        <FlatList
+        <FlashList
             data={chats}
             renderItem={({item}) => <ChatListItem chat={item}/>}
+            estimatedItemSize={80}
         />
     )
 }
