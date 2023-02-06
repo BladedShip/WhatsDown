@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-whatsdown-staging-153031-authRole",
+      "UnauthRoleArn": "arn:aws:iam::855690492573:role/amplify-whatsdown-staging-153031-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::855690492573:role/amplify-whatsdown-staging-153031-authRole",
+      "Region": "ap-south-1",
+      "DeploymentBucketName": "amplify-whatsdown-staging-153031-deployment",
+      "UnauthRoleName": "amplify-whatsdown-staging-153031-unauthRole",
+      "StackName": "amplify-whatsdown-staging-153031",
+      "StackId": "arn:aws:cloudformation:ap-south-1:855690492573:stack/amplify-whatsdown-staging-153031/06cae4f0-a56a-11ed-9e4e-0693e93c51cc",
+      "AmplifyAppId": "d106aa06g9aw99"
+    },
+    "categories": {
+      "auth": {
+        "WhatsDown": {}
+      }
+    }
+  }
+}

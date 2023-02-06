@@ -1,23 +1,33 @@
-import React from "react";
-import { StyleSheet, Text, View,FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import ContactCard from "../components/ContactCard";
-import chats from "../../assets/data/chats";
+import { API, graphqlOperation } from "aws-amplify";
+import { listUsers } from "../graphql/queries";
 
 const Contacts = () => {
+
+    const[users, setUsers] = useState([]);
+
+    useEffect(() => {
+        API.graphql(graphqlOperation(listUsers)).then((res) => {
+            setUsers(res.data?.listUsers?.items)
+        });
+    },[]);
+
     return (
         <View style={styles.container}>
-        <FlatList
-                    data={chats}
-                    renderItem={({ item }) => <ContactCard user={item.user} />}
-                    style={styles.list}
-                />
+            <FlatList
+                data={users}
+                renderItem={({ item }) => <ContactCard user={item} />}
+                style={styles.list}
+            />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
+        flex: 1,
     },
 });
 
