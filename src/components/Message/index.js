@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
+import { API, Auth } from "aws-amplify";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
@@ -7,14 +8,20 @@ dayjs.extend(relativeTime);
 
 const Message = ({ message }) => {
 
-    const isMyMessage = () => {
-        return message.user.id === "u1";
-    }
+    const [isSelf, setIsSelf] = useState(false);
+
+    useEffect(() => {
+        const isMyMessage = async () => {
+            const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+            setIsSelf(message.userID === authUser.attributes.sub);
+        };
+        isMyMessage();
+    }, []);
 
     return (
         <View style={[styles.container, {
-            backgroundColor: isMyMessage() ? "#DCF8C5" : "white",
-            alignSelf: isMyMessage() ? "flex-end" : "flex-start",
+            backgroundColor: isSelf ? "#DCF8C5" : "white",
+            alignSelf: isSelf ? "flex-end" : "flex-start",
         }]}>
             <Text>{message.text}</Text>
             <Text style={styles.time}>{dayjs(message.createdAt).fromNow(true)}</Text>
