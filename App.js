@@ -23,7 +23,6 @@ function App() {
 
       //if user exists, do nothing:else create user in db
       if (userData.data.getUser) {
-        console.log("User already exists in DB");
         return;
       }
 

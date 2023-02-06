@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 
-import Chats from "../screens/Chats";
+import Chats from "../screens/Chats/Chats";
 import NotImplementedScreen from "../screens/NotImplementedScreen";
 import Settings from "../screens/Settings";
 

@@ -12,19 +12,21 @@ const ChatListItem = ({chat}) => {
 
     const navigation = useNavigation();
 
+    const user = chat.users.items[0].user;
+
     return (
         <Pressable style={styles.container} onPress={()=>navigation.navigate('ChatScreen',{ id:chat.id,name:chat.user.name })}>
             <Image
-                source={{ uri: chat.user.image }}
+                source={{ uri: user?.image }}
                 style={styles.image}
             />
             <View style={styles.content}>
                 <View style={styles.row}>
-                    <Text style={styles.name} numberOfLines={1}>{chat.user.name}</Text>
-                    <Text style={styles.subTitle}>{dayjs(chat.lastMessage.createdAt).fromNow()}</Text>
+                    <Text style={styles.name} numberOfLines={1}>{user?.name}</Text>
+                    <Text style={styles.subTitle}>{dayjs(chat.lastMessage?.createdAt).fromNow()}</Text>
                 </View>
 
-                <Text style={styles.subTitle} numberOfLines={2}>{chat.lastMessage.text}</Text>
+                <Text style={styles.subTitle} numberOfLines={2}>{chat.lastMessage?.text}</Text>
             </View>
         </Pressable>
     );
