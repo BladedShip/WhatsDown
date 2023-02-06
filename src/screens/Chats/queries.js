@@ -1,6 +1,6 @@
 export const listChatRooms = `
-    query getUser($id: ID!) {
-        getUser(id:$id){
+    query MyQuery{
+        getUser(id:"ff17fac6-70b3-4b63-b2a0-8feaa39ef509"){
             id
             ChatRooms{
                 items{
@@ -18,7 +18,6 @@ export const listChatRooms = `
                         LastMessage{
                             id
                             createdAt
-                            text
                         }
                     }
                 }

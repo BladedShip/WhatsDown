@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { Text, View, Image, StyleSheet,Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { API, graphqlOperation,Auth } from "aws-amplify";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -11,8 +12,18 @@ dayjs.extend(relativeTime);
 const ChatListItem = ({chat}) => {
 
     const navigation = useNavigation();
+    const [user,setUser] = useState(null);
 
-    const user = chat.users.items[0].user;
+    useEffect(() => {
+        const fetchUsers = async ()=>{
+            const authUser = await Auth.currentAuthenticatedUser({ bypassCache: true });
+            const userItem = chat.users.items.find(item=>item.user.id!==authUser.attributes.sub);
+            setUser(userItem?.user);
+        };
+        fetchUsers();
+    },[]);
+
+    
 
     return (
         <Pressable style={styles.container} onPress={()=>navigation.navigate('ChatScreen',{ id:chat.id,name:chat.user.name })}>
