@@ -1,5 +1,5 @@
 import ChatListItem from "../../components/ChatListItem";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, Image, StyleSheet, FlatList } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { API, graphqlOperation, Auth } from "aws-amplify";
@@ -8,7 +8,7 @@ import { FlashList } from "@shopify/flash-list";
 
 const Chats = () => {
 
-    const [chatRooms,setChatRooms] = useState([]);
+    const [chatRooms, setChatRooms] = useState([]);
 
     useEffect(() => {
         const fetchChatRooms = async () => {
@@ -21,7 +21,7 @@ const Chats = () => {
             setChatRooms(res.data.getUser.ChatRooms.items);
         };
         fetchChatRooms();
-    },[])
+    }, [])
     return (
         <FlatList
             data={chatRooms}
